@@ -20,17 +20,34 @@ export default App
 
 const styles = StyleSheet.create({})
 
-// import { StyleSheet, Text, View } from 'react-native'
-// import React from 'react'
-// import RegisterScreen from './components/screens/RegisterScreen'
-// const App = () => {
+
+
+
+
+
+
+
+
+
+
+// App.js
+// import { NavigationContainer } from "@react-navigation/native";
+// import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// import RegisterScreen from "./components/screens/RegisterScreen";
+// import LoginScreen from "./components/screens/LoginScreen";
+// import HomeScreen from "./components/screens/HomeScreen"; 
+
+// const Stack = createNativeStackNavigator();
+
+// export default function App() {
 //   return (
-//     <View>
-//       <RegisterScreen/>
-//     </View>
-//   )
+//     <NavigationContainer>
+//       <Stack.Navigator initialRouteName="Register">
+//         <Stack.Screen name="Register" component={RegisterScreen} />
+//         <Stack.Screen name="Login" component={LoginScreen} />
+//         <Stack.Screen name="Home" component={HomeScreen} />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
 // }
 
-// export default App
-
-// const styles = StyleSheet.create({})

@@ -2,11 +2,16 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { moderateScale, verticalScale } from 'react-native-size-matters'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { useDispatch } from 'react-redux'
-import { addToCart, incrementQuantity } from '../../redux/cartSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart, decreaseQuantity, incrementQuantity, removeFromCart } from '../../redux/cartSlice'
 
 const MenuComponent = ({ food }) => {
-  const dispatch = useDispatch()
+ const dispatch = useDispatch();
+     const cartItem = useSelector(state =>
+     state.cart.cart.find(item => item.id === food.id)
+    );
+
+  const quantity = cartItem?.quantity ?? 0;
   const [addItems, setAddItems] = useState(0)
   const [selected, setSelected] = useState(false)
 
@@ -54,17 +59,19 @@ const MenuComponent = ({ food }) => {
             <View style={styles.counterContainer}>
               <Pressable
                 onPress={() => {
-                  setAddItems(prev => {
-                    if (prev === 1) {
-                      setSelected(false)
-                      return 0
-                    }
-                    return prev - 1
-                  })
-                }}
-              >
-                <Text style={styles.counterText}>-</Text>
-              </Pressable>
+               setAddItems(prev => {
+                if (prev === 1) {
+               setSelected(false)
+                dispatch(removeFromCart(food))  
+              return 0
+            }
+              dispatch(decreaseQuantity(food))  
+            return prev - 1
+           })
+          }}
+     >
+             <Text style={styles.counterText}>-</Text>
+            </Pressable>
               <Text style={styles.counterText}>{addItems}</Text>
               <Pressable
                 onPress={() => {

@@ -11,7 +11,9 @@ import { useSelector } from 'react-redux'
 
 const MenuScreen = () => {
   const cart= useSelector((state)=>state.cart.cart)
-  console.info('Cart Items: ',cart)
+  const total=cart.map((item)=>item.price*item.quantity).reduce((curr,prev)=>curr+prev,0)
+  console.log('Total price: ',total)
+  console.log('Cart Items: ',cart)
   const route= useRoute()
   const navigation= useNavigation();
   const [liked, setLiked] = useState(false);
@@ -112,6 +114,38 @@ const MenuScreen = () => {
           </View>
         </View>
       </Modal>
+
+      {total ===0 ? null :(
+        <Pressable style={{
+          backgroundColor:'#00A877',
+          width:'90%',
+          padding:13,
+          marginLeft:'auto',
+          marginRight:'auto',
+          marginBottom:moderateScale(30),
+          left:moderateScale (20),
+          bottom:10,
+          position:'absolute',
+          borderRadius:moderateScale(10)
+        }}>
+         <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+          <View>
+            <Text style={{
+              color:'white',
+              fontWeight:'bold',
+              fontSize:16,
+              
+            }}>{cart.length} items | ₹ {total}</Text>
+            <Text style={{fontSize:15,fontWeight:'600',top:3,color:'white'}}>Extra Charges may Apply!</Text>
+          </View>
+          <Pressable onPress={()=>navigation.navigate('CartScreen',{
+            name:route.params.name,
+          })}>
+            <Text style={{fontSize:18,fontWeight:'600',color:'white'}}>View Cart</Text>
+          </Pressable>
+         </View>
+        </Pressable>
+      )}
     </>
   )
 }
