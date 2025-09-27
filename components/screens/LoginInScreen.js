@@ -46,6 +46,7 @@ const LoginInScreen = () => {
         <Text>Create a account ? 
         <TouchableOpacity>
             <Text style={{color:'blue',top:moderateScale(7)}}>Register</Text>
+            <Text>hlo</Text>
         </TouchableOpacity>
       </Text>
       </View>
