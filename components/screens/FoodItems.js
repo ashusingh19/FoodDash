@@ -15,6 +15,7 @@ const FoodItems = ({item}) => {
       setSelected([...selected,item]);
     }
   }
+  //check 
   return (
     <View>
        <>
