@@ -16,7 +16,8 @@ const StackNavigator = () => {
   return (
     <SafeAreaProvider style={{flex:1}}>
         <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown:false}} initialRouteName='RegisterScreen'>
+        <Stack.Navigator screenOptions={{headerShown:false}} initialRouteName='HomeScreen
+        '>
             <Stack.Screen name='RegisterScreen' component={RegisterScreen}/>
             <Stack.Screen name='LoginScreen' component={LoginScreen}/>
             <Stack.Screen name='HomeScreen' component={HomeScreen}/>

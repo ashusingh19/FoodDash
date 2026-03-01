@@ -2,12 +2,17 @@ import express from "express";
 import {connectdb} from "./src/conndb/connectdb.js";
 import dotenv from "dotenv";
 import authRoutes from "./src/routes/authRoutes.js";
-
+import restaurant from "./src/routes/restaurant.js";
+import menu from "./src/routes/menu.js";
+import order from "./src/routes/order.js";
 dotenv.config();
 const app = express();
 const PORT = 3000
 app.use(express.json());
  app.use('/api/auth',authRoutes);
+ app.use('/api/restaurant',restaurant);
+ app.use('/api/menu',menu);
+ app.use('/api/order',order);
 const start = async()=>{
     try {
         await connectdb();

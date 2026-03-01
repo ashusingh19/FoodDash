@@ -32,18 +32,21 @@ const generateToken = (UserId)=>{
             username,
             password,
             email,
-            fullname
+            fullname,
+            roll: roll || "user"
         });
         await user.save();
         const token = generateToken(user._id);
         res.status(201).json({
+         message: "User registered successfully",
             token,
             User:{
                 id:user._id,
                 username:user.username,
                 password:user.password,
                 email:user.email,
-                fullname:user.fullname
+                fullname:user.fullname,
+                roll:user.roll
             }
         }, {timestamps:true})
         } catch (error) {
